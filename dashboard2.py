@@ -79,6 +79,18 @@ fig, ax = plt.subplots()
 df_filtered[['PM2.5', 'PM2.5 MA']].plot(ax=ax, figsize=(10, 4), title=f'Rata-rata Pergerakan {window_size}-Jam')
 st.pyplot(fig)
 
+# Analisis Hari dengan Polusi Tertinggi
+st.subheader("Hari dengan PM2.5 Tertinggi")
+highest_pm25 = df_filtered['PM2.5'].idxmax()
+st.write(f"Hari dengan PM2.5 tertinggi: {highest_pm25}")
+
+# Boxplot Distribusi PM2.5
+st.subheader("Boxplot PM2.5")
+fig, ax = plt.subplots()
+sns.boxplot(y=df_filtered['PM2.5'], ax=ax)
+ax.set_title("Distribusi PM2.5")
+st.pyplot(fig)
+
 # Tombol Unduh Data
 st.sidebar.subheader("Unduh Data")
 csv = df_filtered.to_csv().encode('utf-8')
