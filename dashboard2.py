@@ -64,10 +64,11 @@ ax.set_xlabel("Suhu (°C)")
 ax.set_ylabel("PM2.5")
 st.pyplot(fig)
 
-# Heatmap Korelasi
+# Heatmap Korelasi (Hanya Kolom Numerik)
 st.subheader("Heatmap Korelasi")
+df_numeric = df_filtered.select_dtypes(include=[np.number]).dropna()
 fig, ax = plt.subplots(figsize=(8,6))
-sns.heatmap(df_filtered.corr(), annot=True, cmap='coolwarm', ax=ax)
+sns.heatmap(df_numeric.corr(), annot=True, cmap='coolwarm', ax=ax)
 st.pyplot(fig)
 
 # Moving Average PM2.5
